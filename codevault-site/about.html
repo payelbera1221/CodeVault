@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About · CodeVault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/styles.css"></head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<nav class="cv-nav" data-mount="nav"></nav>
+
+<main class="relative z-10 px-6 pt-32 pb-20 max-w-5xl mx-auto">
+  <p class="mono txt-violet text-sm tracking-[.3em] uppercase reveal">About</p>
+  <h1 class="text-4xl md:text-6xl font-bold mt-3 reveal">CodeVault</h1>
+  <p class="txt-muted mt-3 max-w-2xl reveal">A global coding practice platform where users can discover, learn, and solve programming problems in one place.</p>
+
+  <section class="cv-card reveal mt-10 p-7">
+    <h2 class="text-2xl font-bold">🎯 Vision</h2>
+    <p class="txt-muted mt-3 leading-relaxed">CodeVault aims to bring different types of programming problems into a single platform where developers and students can:</p>
+    <ul class="mt-4 space-y-2">
+      <li class="cv-card p-3">🔎 <strong>Discover</strong> coding problems</li>
+      <li class="cv-card p-3">📘 <strong>Practice</strong> algorithms and data structures</li>
+      <li class="cv-card p-3">💻 <strong>Solve problems</strong> using multiple programming languages</li>
+      <li class="cv-card p-3">🪞 <strong>Learn different approaches</strong> to the same problem</li>
+      <li class="cv-card p-3">📈 <strong>Track their coding progress</strong></li>
+      <li class="cv-card p-3">🌍 <strong>Eventually contribute</strong> their own problems</li>
+    </ul>
+  </section>
+
+  <section class="mt-12 reveal">
+    <h2 class="text-2xl font-bold">🛠️ Tech Stack</h2>
+    <div class="grid md:grid-cols-3 gap-5 mt-6">
+      <div class="cv-card">
+        <h3 class="text-lg font-bold txt-cyan">Frontend</h3>
+        <ul class="mt-3 space-y-1 txt-muted text-sm">
+          <li>Next.js</li><li>TypeScript</li><li>Tailwind CSS</li><li>shadcn/ui</li>
+        </ul>
+      </div>
+      <div class="cv-card">
+        <h3 class="text-lg font-bold txt-green">Backend</h3>
+        <ul class="mt-3 space-y-1 txt-muted text-sm">
+          <li>Spring Boot</li><li>Java</li><li>Spring Data MongoDB</li><li>Spring Security</li>
+        </ul>
+      </div>
+      <div class="cv-card">
+        <h3 class="text-lg font-bold txt-violet">Database</h3>
+        <ul class="mt-3 space-y-1 txt-muted text-sm">
+          <li>MongoDB</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cv-card reveal mt-12 p-7">
+    <h2 class="text-2xl font-bold">🗺️ Planned features</h2>
+    <p class="txt-muted text-sm mt-1">All mapped on this site — every feature has its own page.</p>
+    <div class="grid md:grid-cols-2 gap-2 mt-5 text-sm">
+      <a class="cv-card p-3" href="problems.html">→ Problem discovery and search</a>
+      <a class="cv-card p-3" href="problems.html">→ Topic and difficulty filtering</a>
+      <a class="cv-card p-3" href="problem.html">→ Multiple approaches for problems</a>
+      <a class="cv-card p-3" href="problem.html">→ Online code editor</a>
+      <a class="cv-card p-3" href="problem.html">→ Code execution</a>
+      <a class="cv-card p-3" href="problem.html">→ Test cases</a>
+      <a class="cv-card p-3" href="login.html">→ User accounts</a>
+      <a class="cv-card p-3" href="progress.html">→ Progress tracking</a>
+      <a class="cv-card p-3" href="community.html">→ Community-contributed problems</a>
+      <a class="cv-card p-3" href="practice.html">→ Practice sets</a>
+      <a class="cv-card p-3" href="ai-hints.html">→ AI-powered hints and code review</a>
+    </div>
+  </section>
+
+  <section class="mt-12 text-center reveal">
+    <a class="cv-btn primary" href="index.html">← Back home</a>
+    <a class="cv-btn ghost ml-3" href="https://github.com/payelbera1221/CodeVault" target="_blank" rel="noopener">View on GitHub →</a>
+  </section>
+</main>
+
+<footer data-mount="footer"></footer>
+<script src="assets/app.js"></script>
+</body></html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Problems · CodeVault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/styles.css"></head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<nav class="cv-nav" data-mount="nav"></nav>
+
+<main class="relative z-10 px-6 pt-32 pb-20 max-w-7xl mx-auto">
+  <p class="mono txt-cyan text-sm tracking-[.3em] uppercase reveal">Discover</p>
+  <h1 class="text-4xl md:text-6xl font-bold mt-3 reveal">All problems</h1>
+  <p class="txt-muted mt-3 max-w-2xl reveal">Search, filter by topic, difficulty, language — the entire MD-curated library at one URL.</p>
+
+  <div class="cv-card mt-10 p-5 reveal">
+    <div class="grid md:grid-cols-3 gap-4">
+      <input id="q" class="cv-input" placeholder="🔍 Search by title or concept (e.g. 'subsequence')">
+      <select id="lang" class="cv-input">
+        <option value="">All languages</option>
+        <option>JavaScript</option><option>Python</option><option>Java</option><option>C++</option><option>Go</option>
+      </select>
+      <select id="sort" class="cv-input">
+        <option value="hot">Sort: hot</option>
+        <option value="diff-asc">Sort: easy → hard</option>
+        <option value="diff-desc">Sort: hard → easy</option>
+        <option value="acc">Sort: acceptance</option>
+      </select>
+    </div>
+
+    <div class="mt-5 flex flex-wrap gap-2">
+      <span class="cv-tag mr-2">Difficulty</span>
+      <button data-diff="" class="cv-btn ghost diff-btn" style="padding:6px 14px;font-size:.85rem">All</button>
+      <button data-diff="Easy" class="cv-btn ghost diff-btn" style="padding:6px 14px;font-size:.85rem">Easy</button>
+      <button data-diff="Medium" class="cv-btn ghost diff-btn" style="padding:6px 14px;font-size:.85rem">Medium</button>
+      <button data-diff="Hard" class="cv-btn ghost diff-btn" style="padding:6px 14px;font-size:.85rem">Hard</button>
+    </div>
+    <div class="mt-3 flex flex-wrap gap-2">
+      <span class="cv-tag mr-2">Topic</span>
+      <button data-topic="" class="cv-btn ghost topic-btn" style="padding:6px 14px;font-size:.85rem">All</button>
+      <button data-topic="Arrays" class="cv-btn ghost topic-btn" style="padding:6px 14px;font-size:.85rem">Arrays</button>
+      <button data-topic="Strings" class="cv-btn ghost topic-btn" style="padding:6px 14px;font-size:.85rem">Strings</button>
+      <button data-topic="Trees" class="cv-btn ghost topic-btn" style="padding:6px 14px;font-size:.85rem">Trees</button>
+      <button data-topic="Graphs" class="cv-btn ghost topic-btn" style="padding:6px 14px;font-size:.85rem">Graphs</button>
+      <button data-topic="DP" class="cv-btn ghost topic-btn" style="padding:6px 14px;font-size:.85rem">DP</button>
+      <button data-topic="Recursion" class="cv-btn ghost topic-btn" style="padding:6px 14px;font-size:.85rem">Recursion</button>
+      <button data-topic="Greedy" class="cv-btn ghost topic-btn" style="padding:6px 14px;font-size:.85rem">Greedy</button>
+    </div>
+  </div>
+
+  <div id="grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10"></div>
+  <div class="flex justify-center gap-2 mt-10">
+    <button class="cv-btn ghost" style="padding:8px 14px">← Prev</button>
+    <button class="cv-btn ghost" style="padding:8px 14px">1</button>
+    <button class="cv-btn ghost" style="padding:8px 14px">2</button>
+    <button class="cv-btn ghost" style="padding:8px 14px">3</button>
+    <button class="cv-btn ghost" style="padding:8px 14px">Next →</button>
+  </div>
+</main>
+
+<footer data-mount="footer"></footer>
+<script src="assets/app.js"></script>
+<script>
+const PROBLEMS = [
+  {t:'Two Sum', d:'Easy', ac:'53%', tags:['Arrays','Hash Map'], langs:['JavaScript','Python','Java','C++']},
+  {t:'Valid Parentheses', d:'Easy', ac:'42%', tags:['Strings','Stack'], langs:['JavaScript','Python','Java']},
+  {t:'Best Time to Buy/Sell Stock', d:'Easy', ac:'54%', tags:['Arrays','Greedy'], langs:['JavaScript','Python','Java']},
+  {t:'Longest Substring Without Repeating', d:'Medium', ac:'36%', tags:['Strings','Sliding Window'], langs:['JavaScript','Python','Java','C++']},
+  {t:'Group Anagrams', d:'Medium', ac:'66%', tags:['Strings','Hash Map'], langs:['JavaScript','Python','Java','Go']},
+  {t:'Maximum Subarray', d:'Medium', ac:'50%', tags:['Arrays','DP'], langs:['JavaScript','Python','Java','C++']},
+  {t:'Reverse Linked List', d:'Easy', ac:'74%', tags:['Recursion','Linked List'], langs:['JavaScript','Python','Java']},
+  {t:'Binary Tree Level Order', d:'Medium', ac:'68%', tags:['Trees','BFS'], langs:['JavaScript','Python','Java','C++']},
+  {t:'Number of Islands', d:'Medium', ac:'58%', tags:['Graphs','DFS'], langs:['JavaScript','Python','Java']},
+  {t:'Climbing Stairs', d:'Easy', ac:'52%', tags:['DP','Recursion'], langs:['JavaScript','Python','Java']},
+  {t:'Word Search', d:'Medium', ac:'44%', tags:['Graphs','Backtracking'], langs:['JavaScript','Python','Java','C++']},
+  {t:'Merge k Sorted Lists', d:'Hard', ac:'53%', tags:['Linked List','Heap','DP'], langs:['JavaScript','Python','Java','C++']},
+];
+const grid = document.getElementById('grid');
+function tagFor(d){return {Easy:'cv-tag green', Medium:'cv-tag gold', Hard:'cv-tag red'}[d];}
+function render(){
+  const q = (document.getElementById('q').value||'').toLowerCase();
+  const diff = document.querySelector('.diff-btn.active')?.dataset.diff||'';
+  const topic = document.querySelector('.topic-btn.active')?.dataset.topic||'';
+  const lang = document.getElementById('lang').value;
+  const sort = document.getElementById('sort').value;
+  let out = PROBLEMS.filter(p =>
+    (!q||p.t.toLowerCase().includes(q)||p.tags.some(x=>x.toLowerCase().includes(q))) &&
+    (!diff||p.d===diff) &&
+    (!topic||p.tags.includes(topic)) &&
+    (!lang||p.langs.includes(lang))
+  );
+  if (sort==='diff-asc') out.sort((a,b)=>{const m={Easy:1,Medium:2,Hard:3};return m[a.d]-m[b.d]});
+  if (sort==='diff-desc') out.sort((a,b)=>{const m={Easy:1,Medium:2,High:3,Hard:3};return m[b.d]-m[a.d]});
+  if (sort==='acc') out.sort((a,b)=>parseInt(b.ac)-parseInt(a.ac));
+  grid.innerHTML = out.length?out.map(p=>`
+    <a class="cv-card reveal in" href="problem.html" data-t="${p.t}">
+      <span class="${tagFor(p.d)}">${p.d}</span>
+      <span class="cv-tag float-right">${p.ac}</span>
+      <h3 class="text-lg font-bold mt-3">${p.t}</h3>
+      <div class="flex flex-wrap gap-2 mt-3 text-xs txt-muted">
+        ${p.tags.map(x=>`<span class="mono">${x}</span>`).join(' · ')}
+      </div>
+      <div class="flex flex-wrap gap-1 mt-3">
+        ${p.langs.map(l=>`<span class="cv-tag">${l}</span>`).join('')}
+      </div>
+    </a>`).join('') : '<p class="txt-muted col-span-full">No problems match — try clearing filters.</p>';
+}
+['q','lang','sort'].forEach(id=>document.getElementById(id).addEventListener('input',render));
+document.querySelectorAll('.diff-btn').forEach(b=>b.addEventListener('click',e=>{document.querySelectorAll('.diff-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');b.style.borderColor='var(--cyan)';b.style.color='var(--cyan)';render()}));
+document.querySelectorAll('.topic-btn').forEach(b=>b.addEventListener('click',e=>{document.querySelectorAll('.topic-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()}));
+document.querySelector('.diff-btn').click();
+document.querySelector('.topic-btn').click();
+</script>
+</body></html>

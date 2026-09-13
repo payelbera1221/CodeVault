@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Editor · CodeVault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/styles.css"></head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<nav class="cv-nav" data-mount="nav"></nav>
+
+<main class="relative z-10 px-6 pt-32 pb-20 max-w-6xl mx-auto">
+  <div class="flex justify-between items-end flex-wrap gap-4 reveal">
+    <div>
+      <p class="mono txt-cyan text-sm tracking-[.3em] uppercase">Playground</p>
+      <h1 class="text-4xl md:text-6xl font-bold mt-2">Online code editor</h1>
+    </div>
+    <div class="flex gap-2 flex-wrap">
+      <select id="lang" class="cv-input" style="width:auto">
+        <option value="js">JavaScript</option><option value="py">Python</option>
+        <option value="java">Java</option><option value="cpp">C++</option><option value="go">Go</option>
+      </select>
+      <button id="run" class="cv-btn primary">▶ Run</button>
+      <button id="save" class="cv-btn ghost">💾 Save</button>
+      <button id="share" class="cv-btn ghost">🔗 Share</button>
+    </div>
+  </div>
+
+  <div class="grid lg:grid-cols-2 gap-5 mt-8">
+    <div class="cv-card reveal p-0 overflow-hidden">
+      <div class="mono text-xs px-4 py-2 flex justify-between" style="background:rgba(0,0,0,.3);border-bottom:1px solid var(--stroke)">
+        <span class="txt-cyan">▶ editor.js</span><span class="txt-muted">Line <span id="lines">0</span></span>
+      </div>
+      <textarea id="src" class="mono p-4 w-full" style="min-height:380px;background:rgba(8,12,30,.6);border:0;color:#cdeaff;font-size:.9rem;line-height:1.6;outline:0;resize:vertical;tab-size:2">// Welcome to the CodeVault playground
+// Pick a language, write code, hit Run.
+
+function greet(name) {
+  return `Hello, ${name} 👋 from CodeVault`;
+}
+
+const arr = [1, 2, 3, 4, 5];
+const sum = arr.reduce((a, b) => a + b, 0);
+
+console.log(greet("coder"));
+console.log("Sum =", sum);</textarea>
+    </div>
+    <div class="cv-card reveal p-0 overflow-hidden">
+      <div class="mono text-xs px-4 py-2 flex justify-between" style="background:rgba(0,0,0,.3);border-bottom:1px solid var(--stroke)">
+        <span class="txt-green">▶ console</span><span class="txt-muted">stdin: closed</span>
+      </div>
+      <pre id="out" class="mono p-4" style="min-height:380px;background:rgba(8,12,30,.6);border:0;color:#d8ffd8;font-size:.85rem;white-space:pre-wrap"></pre>
+    </div>
+  </div>
+
+  <div class="cv-card reveal mt-8 p-6 text-sm">
+    <h2 class="text-lg font-bold">Tip</h2>
+    <p class="txt-muted mt-2">The Run button here uses a tiny mock runtime for demo only. To execute real code, swap <code class="txt-cyan">run()</code> in <code class="txt-cyan">editor.html</code> for a <code class="txt-cyan">fetch()</code> to your Spring Boot <code class="txt-cyan">/api/execute</code> endpoint — the front-end layout, language selector, save and share are wired for it.</p>
+  </div>
+</main>
+
+<footer data-mount="footer"></footer>
+<script src="assets/app.js"></script>
+<script>
+const src = document.getElementById('src');
+const out = document.getElementById('out');
+const lang = document.getElementById('lang');
+const lines = document.getElementById('lines');
+src.addEventListener('input', ()=>lines.textContent = src.value.split('\n').length);
+lines.textContent = src.value.split('\n').length;
+
+document.getElementById('run').addEventListener('click', ()=>{
+  out.innerHTML = `<span class="txt-green">▶ ${lang.value} · ran</span>\n` +
+    `Hello, coder 👋 from CodeVault\n` +
+    `Sum = 15\n\n` +
+    `<span class="txt-muted">[demo runtime — wire to your /api/execute]</span>`;
+});
+
+document.getElementById('save').addEventListener('click', ()=>{
+  CV.saveSnippet(src.value, lang.value);
+  out.innerHTML = `<span class="txt-cyan">✓ Saved to browser. Persists across reloads.</span>`;
+});
+
+document.getElementById('share').addEventListener('click', ()=>{
+  const url = location.origin + location.pathname + '#snippet';
+  history.replaceState({}, '', url);
+  navigator.clipboard?.writeText(location.href);
+  out.innerHTML = `<span class="txt-violet">✓ Link copied. Open in another tab to load.</span>`;
+});
+
+// Restore last snippet on load
+const saved = CV.getSnippet();
+if (saved) { src.value = saved.code; lang.value = saved.lang; lines.textContent = src.value.split('\n').length; }
+</script>
+</body></html>

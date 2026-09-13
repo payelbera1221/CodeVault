@@ -1,0 +1,376 @@
+@import "tailwindcss";
+
+:root {
+ --background: #070b14;
+ --foreground: #e5eefc;
+ --muted: #93a4c3;
+ --card: rgba(11, 18, 32, 0.72);
+ --card-border: rgba(148, 163, 184, 0.18);
+ --accent: #38bdf8;
+ --accent-2: #a78bfa;
+ --accent-3: #22c55e;
+ --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+* {
+ box-sizing: border-box;
+}
+
+html {
+ min-height: 100%;
+ background:
+ radial-gradient(
+ circle at top left,
+ rgba(56, 189, 248, 0.14),
+ transparent 28%
+ ),
+ radial-gradient(
+ circle at top right,
+ rgba(167, 139, 250, 0.14),
+ transparent 24%
+ ),
+ radial-gradient(
+ circle at 50% 120%,
+ rgba(34, 197, 94, 0.08),
+ transparent 30%
+ ),
+ var(--background);
+}
+
+body {
+ min-height: 100%;
+ margin: 0;
+ color: var(--foreground);
+ font-family: Arial, Helvetica, sans-serif;
+ background:
+ linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 22%),
+ var(--background);
+}
+
+::selection {
+ background: rgba(56, 189, 248, 0.28);
+ color: white;
+}
+
+.card-3d {
+ transform-style: preserve-3d;
+ perspective: 1200px;
+ transition:
+ transform 240ms ease,
+ box-shadow 240ms ease,
+ border-color 240ms ease;
+ background: var(--card);
+ border: 1px solid var(--card-border);
+ box-shadow: var(--shadow);
+ backdrop-filter: blur(18px);
+ -webkit-backdrop-filter: blur(18px);
+}
+
+.card-3d:hover {
+ transform: translateY(-4px) rotateX(4deg) rotateY(-6deg);
+ border-color: rgba(56, 189, 248, 0.35);
+ box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
+}
+
+.card-3d:focus-within {
+ border-color: rgba(56, 189, 248, 0.45);
+ box-shadow:
+ 0 0 0 3px rgba(56, 189, 248, 0.14),
+ 0 30px 100px rgba(0, 0, 0, 0.55);
+}
+
+/* Same glass depth as .card-3d but without the hover tilt — for large
+ workspace panels the user types and scrolls inside of. */
+.glass-panel {
+ background: var(--card);
+ border: 1px solid var(--card-border);
+ box-shadow: var(--shadow);
+ backdrop-filter: blur(18px);
+ -webkit-backdrop-filter: blur(18px);
+ transition: border-color 240ms ease;
+}
+
+.glass-panel:focus-within {
+ border-color: rgba(56, 189, 248, 0.4);
+}
+
+/* ---------- Pointer-tracked 3D tilt card ---------- */
+/* Driven by --rx / --ry / --mx / --my set from JS on pointer move. */
+.tilt-card {
+ --rx: 0deg;
+ --ry: 0deg;
+ --mx: 50%;
+ --my: 50%;
+ position: relative;
+ transform-style: preserve-3d;
+ transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry))
+ translateZ(0);
+ transition:
+ transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+ border-color 300ms ease,
+ box-shadow 300ms ease;
+ background: var(--card);
+ border: 1px solid var(--card-border);
+ box-shadow: var(--shadow);
+ backdrop-filter: blur(18px);
+ -webkit-backdrop-filter: blur(18px);
+ will-change: transform;
+}
+
+.tilt-card.is-active {
+ transition:
+ transform 80ms linear,
+ border-color 300ms ease,
+ box-shadow 300ms ease;
+ border-color: rgba(56, 189, 248, 0.4);
+ box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+}
+
+.tilt-card::before {
+ content: "";
+ position: absolute;
+ inset: 0;
+ border-radius: inherit;
+ pointer-events: none;
+ opacity: 0;
+ transition: opacity 300ms ease;
+ background: radial-gradient(
+ 320px circle at var(--mx) var(--my),
+ rgba(255, 255, 255, 0.14),
+ transparent 55%
+ );
+ mix-blend-mode: overlay;
+}
+
+.tilt-card.is-active::before {
+ opacity: 1;
+}
+
+.tilt-card > * {
+ transform: translateZ(24px);
+}
+
+/* ---------- Shine-sweep buttons ---------- */
+.button-3d {
+ position: relative;
+ overflow: hidden;
+ transform: translateZ(0);
+ transition:
+ transform 180ms ease,
+ box-shadow 180ms ease,
+ filter 180ms ease;
+ box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+}
+
+.button-3d::after {
+ content: "";
+ position: absolute;
+ top: 0;
+ left: -60%;
+ width: 40%;
+ height: 100%;
+ background: linear-gradient(
+ 115deg,
+ transparent,
+ rgba(255, 255, 255, 0.35),
+ transparent
+ );
+ transform: skewX(-20deg);
+ transition: left 550ms ease;
+}
+
+.button-3d:hover::after {
+ left: 130%;
+}
+
+.button-3d:hover {
+ transform: translateY(-2px) scale(1.015);
+ filter: brightness(1.08);
+ box-shadow: 0 18px 36px rgba(37, 99, 235, 0.45);
+}
+
+.button-3d:active {
+ transform: translateY(0) scale(0.98);
+}
+
+.button-3d:focus-visible {
+ outline: 3px solid rgba(125, 211, 252, 0.7);
+ outline-offset: 3px;
+}
+
+/* ---------- Floating decorative blobs ---------- */
+@keyframes float-blob {
+ 0%,
+ 100% {
+ transform: translate(0, 0) scale(1);
+ }
+ 33% {
+ transform: translate(18px, -22px) scale(1.08);
+ }
+ 66% {
+ transform: translate(-14px, 14px) scale(0.96);
+ }
+}
+
+.blob-float {
+ animation: float-blob 14s ease-in-out infinite;
+}
+
+.blob-float-slow {
+ animation: float-blob 20s ease-in-out infinite reverse;
+}
+
+/* ---------- Entrance: staggered rise-in ---------- */
+@keyframes rise-in {
+ from {
+ opacity: 0;
+ transform: translateY(14px) scale(0.98);
+ }
+ to {
+ opacity: 1;
+ transform: translateY(0) scale(1);
+ }
+}
+
+.rise-in {
+ animation: rise-in 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+ animation-delay: var(--delay, 0ms);
+}
+
+/* ---------- Animated gradient text ---------- */
+@keyframes gradient-flow {
+ 0% {
+ background-position: 0% 50%;
+ }
+ 50% {
+ background-position: 100% 50%;
+ }
+ 100% {
+ background-position: 0% 50%;
+ }
+}
+
+.gradient-text {
+ background: linear-gradient(
+ 100deg,
+ #38bdf8 0%,
+ #a78bfa 35%,
+ #22c55e 65%,
+ #38bdf8 100%
+ );
+ background-size: 240% 240%;
+ -webkit-background-clip: text;
+ background-clip: text;
+ color: transparent;
+ animation: gradient-flow 8s ease infinite;
+}
+
+/* ---------- Success celebration pop ---------- */
+@keyframes pop-in {
+ 0% {
+ opacity: 0;
+ transform: scale(0.85);
+ }
+ 60% {
+ opacity: 1;
+ transform: scale(1.03);
+ }
+ 100% {
+ transform: scale(1);
+ }
+}
+
+.pop-in {
+ animation: pop-in 420ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes ring-pulse {
+ 0% {
+ box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.45);
+ }
+ 100% {
+ box-shadow: 0 0 0 18px rgba(34, 197, 94, 0);
+ }
+}
+
+.ring-pulse {
+ animation: ring-pulse 1.4s ease-out infinite;
+}
+
+.button-3d {
+ transform: translateZ(0);
+ transition:
+ transform 180ms ease,
+ box-shadow 180ms ease,
+ filter 180ms ease;
+ box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+}
+
+.button-3d:hover {
+ transform: translateY(-1px);
+ filter: brightness(1.05);
+ box-shadow: 0 16px 32px rgba(37, 99, 235, 0.45);
+}
+
+.button-3d:focus-visible {
+ outline: 3px solid rgba(125, 211, 252, 0.7);
+ outline-offset: 3px;
+}
+
+.glow-text {
+ text-shadow: 0 0 24px rgba(56, 189, 248, 0.22);
+}
+
+.skeleton {
+ background: linear-gradient(
+ 90deg,
+ rgba(148, 163, 184, 0.08) 0%,
+ rgba(148, 163, 184, 0.18) 50%,
+ rgba(148, 163, 184, 0.08) 100%
+ );
+ background-size: 200% 100%;
+ animation: shimmer 1.35s linear infinite;
+}
+
+@keyframes shimmer {
+ from {
+ background-position: 200% 0;
+ }
+
+ to {
+ background-position: -200% 0;
+ }
+}
+
+@media (prefers-reduced-motion: reduce) {
+ *,
+ *::before,
+ *::after {
+ animation-duration: 0.01ms !important;
+ animation-iteration-count: 1 !important;
+ transition-duration: 0.01ms !important;
+ scroll-behavior: auto !important;
+ }
+
+.card-3d:hover,
+.button-3d:hover {
+ transform: none;
+ }
+
+ .tilt-card {
+ transform: none !important;
+ }
+
+ .blob-float,
+ .blob-float-slow,
+ .gradient-text,
+ .ring-pulse {
+ animation: none !important;
+ }
+
+ .rise-in {
+ animation: none !important;
+ opacity: 1 !important;
+ transform: none !important;
+ }
+}

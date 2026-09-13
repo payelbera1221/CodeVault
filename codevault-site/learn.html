@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Learn · CodeVault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/styles.css"></head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<nav class="cv-nav" data-mount="nav"></nav>
+
+<main class="relative z-10 px-6 pt-32 pb-20 max-w-6xl mx-auto">
+  <p class="mono txt-cyan text-sm tracking-[.3em] uppercase reveal">Learn</p>
+  <h1 class="text-4xl md:text-6xl font-bold mt-3 reveal">Topic paths that fit your brain</h1>
+  <p class="txt-muted mt-3 max-w-2xl reveal">Each topic has a short concept guide, anchor problems, and links to "see 3 different approaches" for each.</p>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+    <div class="cv-card tilt reveal"><div class="glare"></div><div class="text-3xl mb-2">🧱</div><h3 class="text-xl font-bold">Arrays &amp; Hashing</h3><p class="txt-muted text-sm mt-2">Traverse, prefix-sum, hash maps. The 80% of interview questions you'll meet.</p><div class="mt-3 flex gap-2"><span class="cv-tag green">Beginner</span><span class="cv-tag">12 problems</span></div><a class="cv-btn ghost mt-4 inline-block" href="problems.html">Start →</a></div>
+    <div class="cv-card tilt reveal"><div class="glare"></div><div class="text-3xl mb-2">🪟</div><h3 class="text-xl font-bold">Sliding Window</h3><p class="txt-muted text-sm mt-2">Maintain a window — expand, contract, settle. Contiguous-substring hinge.</p><div class="mt-3 flex gap-2"><span class="cv-tag gold">Intermediate</span><span class="cv-tag">8 problems</span></div><a class="cv-btn ghost mt-4 inline-block" href="problems.html">Start →</a></div>
+    <div class="cv-card tilt reveal"><div class="glare"></div><div class="text-3xl mb-2">🌲</div><h3 class="text-xl font-bold">Trees &amp; BSTs</h3><p class="txt-muted text-sm mt-2">Recursion on hierarchical data. BFS, DFS, traversal variants.</p><div class="mt-3 flex gap-2"><span class="cv-tag gold">Intermediate</span><span class="cv-tag">10 problems</span></div><a class="cv-btn ghost mt-4 inline-block" href="problems.html">Start →</a></div>
+    <div class="cv-card tilt reveal"><div class="glare"></div><div class="text-3xl mb-2">🕸️</div><h3 class="text-xl font-bold">Graphs</h3><p class="txt-muted text-sm mt-2">BFS, DFS, Dijkstra, topo sort, union-find.</p><div class="mt-3 flex gap-2"><span class="cv-tag violet">Advanced</span><span class="cv-tag">14 problems</span></div><a class="cv-btn ghost mt-4 inline-block" href="problems.html">Start →</a></div>
+    <div class="cv-card tilt reveal"><div class="glare"></div><div class="text-3xl mb-2">🧮</div><h3 class="text-xl font-bold">Dynamic Programming</h3><p class="txt-muted text-sm mt-2">Smaller subproblems → bigger answer. Pattern over pattern.</p><div class="mt-3 flex gap-2"><span class="cv-tag red">Advanced</span><span class="cv-tag">18 problems</span></div><a class="cv-btn ghost mt-4 inline-block" href="problems.html">Start →</a></div>
+    <div class="cv-card tilt reveal"><div class="glare"></div><div class="text-3xl mb-2">🔁</div><h3 class="text-xl font-bold">Recursion &amp; Backtracking</h3><p class="txt-muted text-sm mt-2">Trust the function. Generate, prune, settle.</p><div class="mt-3 flex gap-2"><span class="cv-tag gold">Intermediate</span><span class="cv-tag">9 problems</span></div><a class="cv-btn ghost mt-4 inline-block" href="problems.html">Start →</a></div>
+    <div class="cv-card tilt reveal"><div class="glare"></div><div class="text-3xl mb-2">🤝</div><h3 class="text-xl font-bold">Greedy</h3><p class="txt-muted text-sm mt-2">Local optimum → global optimum. Spot the pattern, skip the DP.</p><div class="mt-3 flex gap-2"><span class="cv-tag gold">Intermediate</span><span class="cv-tag">7 problems</span></div><a class="cv-btn ghost mt-4 inline-block" href="problems.html">Start →</a></div>
+    <div class="cv-card tilt reveal"><div class="glare"></div><div class="text-3xl mb-2">📚</div><h3 class="text-xl font-bold">Strings &amp; Tries</h3><p class="txt-muted text-sm mt-2">Manipulation, regex, KMP, prefix trees.</p><div class="mt-3 flex gap-2"><span class="cv-tag green">Beginner</span><span class="cv-tag">9 problems</span></div><a class="cv-btn ghost mt-4 inline-block" href="problems.html">Start →</a></div>
+    <div class="cv-card tilt reveal"><div class="glare"></div><div class="text-3xl mb-2">🏗️</div><h3 class="text-xl font-bold">Linked Lists</h3><p class="txt-muted text-sm mt-2">Pointer acrobatics — fast/slow, reversal, merge.</p><div class="mt-3 flex gap-2"><span class="cv-tag green">Beginner</span><span class="cv-tag">6 problems</span></div><a class="cv-btn ghost mt-4 inline-block" href="problems.html">Start →</a></div>
+  </div>
+
+  <div class="cv-card reveal mt-12 p-6">
+    <h2 class="text-2xl font-bold">How CodeVault teaches</h2>
+    <ol class="mt-4 space-y-2 text-sm">
+      <li><strong class="txt-cyan">1. Concept.</strong> A 5-minute intro to the pattern with one diagram.</li>
+      <li><strong class="txt-cyan">2. Anchor problem.</strong> Solve one classic problem from scratch.</li>
+      <li><strong class="txt-cyan">3. Pattern variations.</strong> Solve three more — recognising the pattern is the goal.</li>
+      <li><strong class="txt-cyan">4. Mastery.</strong> Show three <em>different approaches</em> (brute, ideal, idiomatic) → that becomes your shiver detector.</li>
+    </ol>
+  </div>
+</main>
+
+<footer data-mount="footer"></footer>
+<script src="assets/app.js"></script>
+</body></html>

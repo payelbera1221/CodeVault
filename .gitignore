@@ -21,6 +21,12 @@ target/
 # Logs
 *.log
 
+# Archives
+*.zip
+*.tar.gz
+*.rar
+frontend.zip
+
 # OS
 .DS_Store
-Thumbs.db
+Thumbs.db

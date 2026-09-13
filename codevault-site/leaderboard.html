@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leaderboard · CodeVault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/styles.css"></head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<nav class="cv-nav" data-mount="nav"></nav>
+
+<main class="relative z-10 px-6 pt-32 pb-20 max-w-5xl mx-auto">
+  <p class="mono txt-gold text-sm tracking-[.3em] uppercase reveal">Leaderboard</p>
+  <h1 class="text-4xl md:text-6xl font-bold mt-3 reveal">Top solvers this week</h1>
+  <p class="txt-muted mt-3 max-w-2xl reveal">Sorted by XP earned from correctly solved problems in the last 7 days.</p>
+
+  <div class="cv-card mt-10 overflow-hidden reveal">
+    <table class="w-full text-sm">
+      <thead class="txt-muted text-xs tracking-widest uppercase">
+        <tr class="border-b border-white/5"><th class="px-6 py-3 text-left">Rank</th><th class="px-6 py-3 text-left">User</th><th class="px-6 py-3 text-left">Streak</th><th class="px-6 py-3 text-right">XP</th></tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-white/5"><td class="px-6 py-3 mono txt-gold">🥇 1</td><td class="px-6 py-3"><span class="cv-dot"></span><strong class="txt-cyan">@neon_coder</strong></td><td class="px-6 py-3">14d 🔥</td><td class="px-6 py-3 text-right txt-gold mono">9,140</td></tr>
+        <tr class="border-b border-white/5"><td class="px-6 py-3 mono txt-gold">🥈 2</td><td class="px-6 py-3"><span class="cv-dot"></span><strong class="txt-cyan">@sid.bits</strong></td><td class="px-6 py-3">10d</td><td class="px-6 py-3 text-right txt-gold mono">7,860</td></tr>
+        <tr class="border-b border-white/5"><td class="px-6 py-3 mono txt-violet">🥉 3</td><td class="px-6 py-3"><span class="cv-dot"></span><strong class="txt-cyan">@alisha_dev</strong></td><td class="px-6 py-3">9d</td><td class="px-6 py-3 text-right txt-gold mono">7,402</td></tr>
+        <tr class="border-b border-white/5 bg-white/5"><td class="px-6 py-3 mono txt-green">★ 4</td><td class="px-6 py-3"><span class="cv-dot"></span><strong>You</strong></td><td class="px-6 py-3">7d 🔥</td><td class="px-6 py-3 text-right txt-gold mono">6,712</td></tr>
+        <tr class="border-b border-white/5"><td class="px-6 py-3 mono">5</td><td class="px-6 py-3"><span class="cv-dot"></span><strong class="txt-cyan">@hannah_dev</strong></td><td class="px-6 py-3">6d</td><td class="px-6 py-3 text-right txt-gold mono">6,005</td></tr>
+        <tr class="border-b border-white/5"><td class="px-6 py-3 mono">6</td><td class="px-6 py-3"><span class="cv-dot"></span><strong class="txt-cyan">@_alok</strong></td><td class="px-6 py-3">5d</td><td class="px-6 py-3 text-right txt-gold mono">5,888</td></tr>
+        <tr class="border-b border-white/5"><td class="px-6 py-3 mono">7</td><td class="px-6 py-3"><span class="cv-dot"></span><strong class="txt-cyan">@payelbera1221</strong></td><td class="px-6 py-3">4d</td><td class="px-6 py-3 text-right txt-gold mono">5,210</td></tr>
+        <tr><td class="px-6 py-3 mono">8</td><td class="px-6 py-3"><span class="cv-dot"></span><strong class="txt-cyan">@rohan_k</strong></td><td class="px-6 py-3">3d</td><td class="px-6 py-3 text-right txt-gold mono">4,920</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cv-card reveal mt-10 p-6">
+    <h2 class="text-xl font-bold">Your rank breakdown</h2>
+    <div class="grid md:grid-cols-3 gap-4 mt-4 text-sm">
+      <div><div class="txt-muted">Global rank</div><div class="text-3xl font-bold txt-green">#4</div></div>
+      <div><div class="txt-muted">Country</div><div class="text-3xl font-bold txt-cyan">#2</div></div>
+      <div><div class="txt-muted">Cohort (you joined Jul)</div><div class="text-3xl font-bold txt-violet">#1</div></div>
+    </div>
+  </div>
+</main>
+
+<footer data-mount="footer"></footer>
+<script src="assets/app.js"></script>
+</body></html>

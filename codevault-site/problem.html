@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Two Sum · CodeVault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/styles.css"></head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<nav class="cv-nav" data-mount="nav"></nav>
+
+<main class="relative z-10 px-6 pt-32 pb-20 max-w-7xl mx-auto">
+  <p class="mono txt-cyan text-sm tracking-[.3em] uppercase reveal">Problem · #1 · Easy</p>
+  <h1 class="text-4xl md:text-6xl font-bold mt-3 reveal">Two Sum</h1>
+  <div class="flex flex-wrap gap-2 mt-4 reveal">
+    <span class="cv-tag green">Easy</span><span class="cv-tag">Arrays</span><span class="cv-tag">Hash Map</span>
+    <span class="cv-tag gold">53% acceptance</span><span class="cv-tag violet">5+ approaches</span>
+  </div>
+
+  <div class="grid lg:grid-cols-2 gap-6 mt-10">
+    <section class="cv-card reveal p-6">
+      <h2 class="text-2xl font-bold">Problem</h2>
+      <p class="txt-muted mt-3 leading-relaxed">Given an array of integers <code class="txt-cyan">nums</code> and an integer <code class="txt-cyan">target</code>, return <em>indices of the two numbers</em> such that they add up to <code class="txt-cyan">target</code>. You may assume that each input would have <strong>exactly one solution</strong>, and you may not use the same element twice. Return the answer in any order.</p>
+      <div class="cv-card mt-6 p-4" style="background:rgba(8,12,30,.5)">
+        <p class="mono text-sm"><span class="txt-violet">Example 1:</span></p>
+        <pre class="mono text-sm mt-2 txt-cyan">Input:  nums = [2,7,11,15], target = 9
+Output: [0,1]
+Why?    nums[0] + nums[1] == 9 ✓</pre>
+        <p class="mono text-sm mt-4"><span class="txt-violet">Example 2:</span></p>
+        <pre class="mono text-sm mt-2 txt-cyan">Input:  nums = [3,2,4], target = 6
+Output: [1,2]</pre>
+      </div>
+
+      <h3 class="text-lg font-bold mt-8">Test cases</h3>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li class="cv-card p-3"><span class="cv-tag green float-right">✓</span>Hidden <span class="mono">nums=[2,7,11,15], target=9</span></li>
+        <li class="cv-card p-3"><span class="cv-tag green float-right">✓</span>Public <span class="mono">nums=[3,2,4], target=6</span></li>
+        <li class="cv-card p-3"><span class="cv-tag green float-right">✓</span>Public <span class="mono">nums=[3,3], target=6</span></li>
+        <li class="cv-card p-3"><span class="cv-tag red float-right">L</span>Locked <span class="mono">50 large arrays</span></li>
+      </ul>
+    </section>
+
+    <section class="cv-card reveal p-6">
+      <div class="flex flex-wrap gap-2 mb-4">
+        <button class="cv-tag lang-tab" data-lang="js">JavaScript</button>
+        <button class="cv-tag lang-tab" data-lang="py">Python</button>
+        <button class="cv-tag lang-tab" data-lang="java">Java</button>
+        <button class="cv-tag lang-tab" data-lang="cpp">C++</button>
+      </div>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="mono text-xs txt-muted self-center">Approaches:</span>
+        <button class="cv-btn ghost approach-btn" data-approach="bf" style="padding:6px 12px;font-size:.8rem">Brute O(n²)</button>
+        <button class="cv-btn ghost approach-btn" data-approach="hm" style="padding:6px 12px;font-size:.8rem">Hash Map O(n)</button>
+        <button class="cv-btn ghost approach-btn" data-approach="tp" style="padding:6px 12px;font-size:.8rem">Two-pointer O(n log n)</button>
+      </div>
+
+      <pre class="mono text-sm p-4 rounded-lg overflow-auto" style="background:rgba(8,12,30,.6);border:1px solid var(--stroke);min-height:200px;color:#cdeaff" id="code"></pre>
+
+      <div class="flex gap-3 mt-4 flex-wrap">
+        <button id="run" class="cv-btn primary">▶ Run</button>
+        <button id="submit" class="cv-btn green">✓ Submit</button>
+        <a href="ai-hints.html" class="cv-btn ghost">🤖 Need a hint?</a>
+      </div>
+
+      <div id="out" class="mono text-sm mt-4 p-4 rounded-lg" style="background:rgba(8,12,30,.6);border:1px solid var(--stroke);min-height:60px"></div>
+
+      <h3 class="text-lg font-bold mt-8">Why multiple approaches?</h3>
+      <p class="txt-muted text-sm mt-2">Same problem — different time/space trade-offs. Learn each pattern; pattern recognition is what makes interview day boringly easy.</p>
+    </section>
+  </div>
+</main>
+
+<footer data-mount="footer"></footer>
+<script src="assets/app.js"></script>
+<script>
+const SNIPPETS = {
+  js: {
+    bf:`// Brute force — O(n²) time / O(1) space
+function twoSum(nums, target) {
+  for (let i = 0; i < nums.length; i++)
+    for (let j = i+1; j < nums.length; j++)
+      if (nums[i] + nums[j] === target) return [i, j];
+}`,
+    hm:`// Hash-map — O(n) time / O(n) space
+function twoSum(nums, target) {
+  const seen = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    const need = target - nums[i];
+    if (seen.has(need)) return [seen.get(need), i];
+    seen.set(nums[i], i);
+  }
+}`,
+    tp:`// Two-pointer — O(n log n) time / O(1) space (after sort)
+function twoSum(nums, target) {
+  const pairs = nums.map((v,i)=>[v,i]).sort((a,b)=>a[0]-b[0]);
+  let l = 0, r = pairs.length-1;
+  while (l<r) {
+    const s = pairs[l][0] + pairs[r][0];
+    if (s===target) return [pairs[l][1], pairs[r][1]];
+    s<target ? l++ : r--;
+  }
+}`
+  },
+  py: {
+    bf:`# Brute force — O(n²)
+def two_sum(nums, target):
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] + nums[j] == target:
+                return [i, j]`,
+    hm:`# Hash map — O(n)
+def two_sum(nums, target):
+    seen = {}
+    for i, n in enumerate(nums):
+        if target - n in seen:
+            return [seen[target-n], i]
+        seen[n] = i`,
+    tp:`# Two-pointer — O(n log n)
+def two_sum(nums, target):
+    pairs = sorted([(v,i) for i,v in enumerate(nums)])
+    l, r = 0, len(pairs)-1
+    while l<r:
+        s = pairs[l][0] + pairs[r][0]
+        if s == target: return [pairs[l][1], pairs[r][1]]
+        if s < target: l += 1
+        else: r -= 1`
+  },
+  java: {
+    bf:`// Brute force — O(n²)
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++)
+            for (int j = i+1; j < nums.length; j++)
+                if (nums[i] + nums[j] == target) return new int[]{i,j};
+        return new int[0];
+    }
+}`,
+    hm:`// Hash map — O(n)
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer,Integer> seen = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int need = target - nums[i];
+            if (seen.containsKey(need)) return new int[]{seen.get(need), i};
+            seen.put(nums[i], i);
+        }
+        return new int[0];
+    }
+}`,
+    tp:`// Two-pointer — O(n log n)
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Integer[][] pairs = new Integer[nums.length][2];
+        for (int i=0; i<nums.length; i++){ pairs[i][0]=nums[i]; pairs[i][1]=i; }
+        Arrays.sort(pairs, (a,b)->a[0]-b[0]);
+        int l=0, r=pairs.length-1;
+        while (l<r) {
+            int s = pairs[l][0]+pairs[r][0];
+            if (s==target) return new int[]{pairs[l][1], pairs[r][1]};
+            if (s<target) l++; else r--;
+        }
+        return new int[0];
+    }
+}`
+  },
+  cpp: {
+    bf:`// Brute force — O(n²)
+vector<int> twoSum(vector<int>& nums, int target) {
+    for (int i = 0; i < nums.size(); i++)
+        for (int j = i+1; j < nums.size(); j++)
+            if (nums[i]+nums[j]==target) return {i,j};
+    return {};
+}`,
+    hm:`// Hash map — O(n)
+vector<int> twoSum(vector<int>& nums, int target) {
+    unordered_map<int,int> seen;
+    for (int i=0; i<nums.size(); i++) {
+        if (seen.count(target-nums[i])) return {seen[target-nums[i]], i};
+        seen[nums[i]] = i;
+    }
+    return {};
+}`,
+    tp:`// Two-pointer — O(n log n)
+vector<int> twoSum(vector<int>& nums, int target) {
+    vector<pair<int,int>> p;
+    for (int i=0;i<nums.size();i++) p.push_back({nums[i],i});
+    sort(p.begin(), p.end());
+    int l=0, r=(int)p.size()-1;
+    while (l<r) {
+        int s = p[l].first + p[r].first;
+        if (s==target) return {p[l].second, p[r].second};
+        s<target ? l++ : r--;
+    }
+    return {};
+}`
+  }
+};
+let lang='js', approach='hm';
+function renderCode(){
+  document.getElementById('code').textContent = SNIPPETS[lang][approach];
+}
+document.querySelectorAll('.lang-tab').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.lang-tab').forEach(x=>{x.style.background='rgba(34,211,238,.08)';x.style.color='var(--cyan)'});
+  b.style.background='rgba(34,197,94,.18)'; b.style.color='var(--green)'; b.style.borderColor='var(--green)';
+  lang=b.dataset.lang; renderCode();
+}));
+document.querySelectorAll('.approach-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.approach-btn').forEach(x=>x.style.borderColor='var(--stroke)');
+  b.style.borderColor='var(--cyan)'; b.style.color='var(--cyan)';
+  approach=b.dataset.approach; renderCode();
+}));
+
+document.querySelector('.lang-tab').click();
+document.querySelector('.approach-btn[data-approach="hm"]').click();
+
+document.getElementById('run').addEventListener('click',()=>{
+  const o = document.getElementById('out');
+  o.innerHTML = `<span class="txt-green">▶ ${lang} · ${approach}</span>\n\nnums = [2,7,11,15] target=9\n→ [0,1] ✓\n\nnums = [3,2,4] target=6\n→ [1,2] ✓\n\n<span class="txt-muted">[demo runtime — wire to your backend with fetch('/api/submit')]</span>`;
+});
+document.getElementById('submit').addEventListener('click',()=>{
+  const o = document.getElementById('out');
+  o.innerHTML = `<span class="txt-green">✓ All test cases passed (4/4)</span>\nRuntime 56 ms · Beats 92%\nMemory 44 MB · Beats 71%\n\n<span class="txt-cyan">+10 XP added to your streak 🔥</span>`;
+});
+</script>
+</body></html>

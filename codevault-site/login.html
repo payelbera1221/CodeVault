@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sign in · CodeVault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/styles.css"></head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<nav class="cv-nav" data-mount="nav"></nav>
+
+<main class="relative z-10 px-6 pt-32 pb-20 max-w-md mx-auto">
+  <div class="cv-card reveal p-7">
+    <h1 class="text-3xl font-bold text-center">Welcome back</h1>
+    <p class="txt-muted text-center text-sm mt-2">Sign in to track progress, save snippets and join the leaderboard.</p>
+
+    <div class="flex gap-2 mt-6">
+      <button class="cv-btn ghost tab-btn flex-1" data-tab="in" style="font-size:.85rem">Sign in</button>
+      <button class="cv-btn ghost tab-btn flex-1" data-tab="up" style="font-size:.85rem">Create account</button>
+    </div>
+
+    <form id="form-in" class="mt-6 space-y-4">
+      <div><label class="cv-label">Email</label><input class="cv-input" type="email" placeholder="you@vault.dev" value="payelbera1221@vault.dev"></div>
+      <div><label class="cv-label">Password</label><input class="cv-input" type="password" value="vault-demo"></div>
+      <button type="submit" class="cv-btn primary w-full">Sign in</button>
+      <p class="text-xs txt-muted text-center">Demo creds prefilled — click Sign in to enter as <strong class="txt-cyan">payelbera1221</strong>.</p>
+    </form>
+
+    <form id="form-up" class="mt-6 space-y-4" style="display:none">
+      <div><label class="cv-label">Username</label><input class="cv-input" placeholder="pick_a_handle"></div>
+      <div><label class="cv-label">Email</label><input class="cv-input" type="email" placeholder="you@vault.dev"></div>
+      <div><label class="cv-label">Password</label><input class="cv-input" type="password"></div>
+      <button type="submit" class="cv-btn green w-full">Create account</button>
+    </form>
+
+    <div class="flex items-center gap-3 my-6">
+      <div class="flex-1 h-px" style="background:var(--stroke)"></div>
+      <span class="txt-muted text-xs uppercase tracking-widest">or</span>
+      <div class="flex-1 h-px" style="background:var(--stroke)"></div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3">
+      <a href="#" class="cv-btn ghost text-center" style="font-size:.85rem">GitHub</a>
+      <a href="#" class="cv-btn ghost text-center" style="font-size:.85rem">Google</a>
+    </div>
+  </div>
+</main>
+
+<footer data-mount="footer"></footer>
+<script src="assets/app.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tab-btn').forEach(x=>{x.style.borderColor='var(--stroke)'});
+  b.style.borderColor='var(--cyan)'; b.style.color='var(--cyan)';
+  document.getElementById('form-in').style.display = b.dataset.tab==='in'?'block':'none';
+  document.getElementById('form-up').style.display = b.dataset.tab==='up'?'block':'none';
+}));
+document.querySelector('.tab-btn[data-tab="in"]').click();
+
+document.querySelectorAll('form').forEach(f=>f.addEventListener('submit',e=>{
+  e.preventDefault();
+  CV.setUser({name:'payelbera1221', joined:Date.now()});
+  location.href='progress.html';
+}));
+</script>
+</body></html>

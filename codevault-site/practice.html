@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practice · CodeVault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/styles.css"></head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<nav class="cv-nav" data-mount="nav"></nav>
+
+<main class="relative z-10 px-6 pt-32 pb-20 max-w-6xl mx-auto">
+  <div class="cv-card reveal p-8 grid md:grid-cols-2 gap-8 items-center" style="background:linear-gradient(135deg, rgba(34,197,94,.1), rgba(167,139,250,.05))">
+    <div>
+      <p class="mono txt-green text-sm tracking-[.3em] uppercase">Daily challenge</p>
+      <h1 class="text-4xl md:text-5xl font-bold mt-3">Longest Substring Without Repeating</h1>
+      <p class="txt-muted mt-4">One fresh problem every 24 hours. Solve it to keep your streak alive.</p>
+      <div class="mt-6 flex gap-3 flex-wrap">
+        <a class="cv-btn primary" href="problem.html">Start challenge</a>
+        <a class="cv-btn ghost" href="progress.html">My streak: 7 days 🔥</a>
+      </div>
+    </div>
+    <div class="text-center">
+      <p class="txt-muted text-xs tracking-widest uppercase">Next challenge in</p>
+      <div id="countdown" class="mono text-4xl mt-3 txt-cyan">--:--:--</div>
+      <p class="txt-muted text-sm mt-2">UTC resets at 00:00</p>
+    </div>
+  </div>
+
+  <div class="mt-16">
+    <p class="mono txt-cyan text-sm tracking-[.3em] uppercase reveal">Curated practice sets</p>
+    <h2 class="text-3xl md:text-6xl font-bold mt-3 reveal">Pick your run</h2>
+    <div class="grid md:grid-cols-2 gap-5 mt-10">
+      <div class="cv-card tilt reveal"><div class="glare"></div>
+        <span class="cv-tag green">Beginner-friendly</span>
+        <h3 class="text-xl font-bold mt-3">DSA Warm-up</h3>
+        <p class="txt-muted text-sm mt-2">40 problems to get comfortable with patterns, edges and language idioms.</p>
+        <div class="flex gap-3 mono text-xs txt-muted mt-4">
+          <span>40 problems</span><span>· 12 hrs</span><span>· Easy → Med</span>
+        </div>
+        <a class="cv-btn ghost mt-5 inline-block" href="problems.html">Begin set →</a>
+      </div>
+      <div class="cv-card tilt reveal"><div class="glare"></div>
+        <span class="cv-tag gold">Most-popular</span>
+        <h3 class="text-xl font-bold mt-3">Top-100 Liked</h3>
+        <p class="txt-muted text-sm mt-2">The set every company asks from, in a curated climb from arrays to DP.</p>
+        <div class="flex gap-3 mono text-xs txt-muted mt-4">
+          <span>100 problems</span><span>· 30 hrs</span><span>· Easy → Hard</span>
+        </div>
+        <a class="cv-btn primary mt-5 inline-block" href="problems.html">Begin set →</a>
+      </div>
+      <div class="cv-card tilt reveal"><div class="glare"></div>
+        <span class="cv-tag violet">Interview prep</span>
+        <h3 class="text-xl font-bold mt-3">FAANG Sprint</h3>
+        <p class="txt-muted text-sm mt-2">The 80-question mega set grouped by tag — finish in 6 weekends.</p>
+        <div class="flex gap-3 mono text-xs txt-muted mt-4">
+          <span>80 problems</span><span>· 24 hrs</span><span>· Med → Hard</span>
+        </div>
+        <a class="cv-btn ghost mt-5 inline-block" href="problems.html">Begin set →</a>
+      </div>
+      <div class="cv-card tilt reveal"><div class="glare"></div>
+        <span class="cv-tag">Foundations</span>
+        <h3 class="text-xl font-bold mt-3">Algorithms Essentials</h3>
+        <p class="txt-muted text-sm mt-2">50 bite-sized problems covering the algorithmic backbone.</p>
+        <div class="flex gap-3 mono text-xs txt-muted mt-4">
+          <span>50 problems</span><span>· 18 hrs</span><span>· Mixed</span>
+        </div>
+        <a class="cv-btn ghost mt-5 inline-block" href="problems.html">Begin set →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-card reveal mt-16 p-6">
+    <h2 class="text-2xl font-bold">Recommended path</h2>
+    <ol class="mt-5 space-y-3">
+      <li class="cv-card p-4"><span class="cv-tag green float-right">Day 1</span><strong>Arrays Warm-up</strong> — 5 problems · 1 hr · settle into rhythm</li>
+      <li class="cv-card p-4"><span class="cv-tag float-right">Day 2-4</span><strong>Hash-map patterns</strong> — 12 problems · 4 hrs · see frequency tricks</li>
+      <li class="cv-card p-4"><span class="cv-tag gold float-right">Day 5-7</span><strong>Sliding window</strong> — 8 problems · 4 hrs · pattern recognition kicks in</li>
+      <li class="cv-card p-4"><span class="cv-tag violet float-right">Day 8-14</span><strong>DP dive</strong> — 15 problems · 10 hrs · your second brain</li>
+    </ol>
+  </div>
+</main>
+
+<footer data-mount="footer"></footer>
+<script src="assets/app.js"></script>
+<script>
+function pad(n){return String(n).padStart(2,'0')}
+function tick(){
+  const now = new Date();
+  const tomorrow = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()+1));
+  const diff = tomorrow - now;
+  const h = Math.floor(diff/3.6e6);
+  const m = Math.floor(diff%3.6e6/6e4);
+  const s = Math.floor(diff%6e4/1000);
+  const el = document.getElementById('countdown');
+  if (el) el.textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
+}
+tick(); setInterval(tick, 1000);
+</script>
+</body></html>

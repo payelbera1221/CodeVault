@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CodeVault — A global coding practice platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link rel="stylesheet" href="assets/styles.css"></head>
+<body>
+<div id="webgl" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true"></div>
+<nav class="cv-nav" data-mount="nav"></nav>
+
+<header class="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6 pt-32 pb-20">
+  <span class="cv-tag reveal">● A global coding practice platform</span>
+  <h1 class="reveal mt-6 text-6xl md:text-8xl font-bold tracking-tight"
+      style="background:linear-gradient(100deg,#fff 10%,var(--cyan) 35%,var(--violet) 55%,var(--magenta) 75%,#fff 95%);-webkit-background-clip:text;background-clip:text;color:transparent">
+    CodeVault
+  </h1>
+  <p class="reveal txt-muted mt-5 max-w-2xl text-lg">A playful 3D home for your coding practice. Discover problems, learn approaches, write code, run it, get unstuck with AI hints — all in one place.</p>
+  <div class="reveal mono mt-7 px-5 py-3 rounded-xl border" style="background:rgba(8,12,30,.6);border-color:var(--stroke);color:#9fe8ff">
+    <span style="color:var(--green)">➜</span> const solution = await vault.open('Two Sum');<span class="cv-caret"></span>
+  </div>
+  <div class="reveal flex gap-3 mt-8 flex-wrap justify-center">
+    <a class="cv-btn primary" href="problems.html">Browse problems</a>
+    <a class="cv-btn ghost" href="practice.html">Today's challenge</a>
+    <a class="cv-btn ghost" href="https://github.com/payelbera1221/CodeVault" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+  <div class="reveal absolute bottom-8 txt-muted text-xs tracking-[.3em] animate-pulse">SCROLL ↓</div>
+</header>
+
+<section class="relative z-10 px-6 py-20 max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+  <div class="cv-card text-center"><span class="cv-dot"></span><div class="text-3xl font-bold txt-green" data-count="500" data-suffix="+">0</div><div class="txt-muted text-xs tracking-widest uppercase mt-2">Problems</div></div>
+  <div class="cv-card text-center"><span class="cv-dot"></span><div class="text-3xl font-bold txt-cyan" data-count="8">0</div><div class="txt-muted text-xs tracking-widest uppercase mt-2">Languages</div></div>
+  <div class="cv-card text-center"><span class="cv-dot"></span><div class="text-3xl font-bold txt-violet" data-count="40" data-suffix="+">0</div><div class="txt-muted text-xs tracking-widest uppercase mt-2">Topics</div></div>
+  <div class="cv-card text-center"><span class="cv-dot"></span><div class="text-3xl font-bold txt-gold" data-count="1" data-suffix="">.0</div><div class="txt-muted text-xs tracking-widest uppercase mt-2">Open source</div></div>
+</section>
+
+<section class="relative z-10 px-6 py-16 max-w-6xl mx-auto">
+  <div class="text-center reveal">
+    <p class="mono txt-violet text-sm tracking-[.3em] uppercase">What you can do</p>
+    <h2 class="text-3xl md:text-6xl font-bold mt-3" style="background:linear-gradient(90deg,#fff,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent">Every planned feature, one click away</h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-5 mt-12">
+    <a class="cv-card tilt reveal" href="problems.html"><div class="glare"></div><div class="text-3xl mb-3">🔎</div><h3 class="text-lg font-bold">Discover problems</h3><p class="txt-muted text-sm mt-2">Search, filter by topic and difficulty across hundreds of curated problems.</p></a>
+    <a class="cv-card tilt reveal" href="problem.html"><div class="glare"></div><div class="text-3xl mb-3">📚</div><h3 class="text-lg font-bold">Multiple approaches</h3><p class="txt-muted text-sm mt-2">See brute force, optimal and idiomatic solutions side by side.</p></a>
+    <a class="cv-card tilt reveal" href="practice.html"><div class="glare"></div><div class="text-3xl mb-3">🎯</div><h3 class="text-lg font-bold">Practice sets</h3><p class="txt-muted text-sm mt-2">Curated sets and a daily challenge designed for steady progress.</p></a>
+    <a class="cv-card tilt reveal" href="leaderboard.html"><div class="glare"></div><div class="text-3xl mb-3">🏆</div><h3 class="text-lg font-bold">Leaderboards</h3><p class="txt-muted text-sm mt-2">Compete gently with the community on streaks and solved counts.</p></a>
+    <a class="cv-card tilt reveal" href="progress.html"><div class="glare"></div><div class="text-3xl mb-3">📈</div><h3 class="text-lg font-bold">Track progress</h3><p class="txt-muted text-sm mt-2">Streaks, mastery bars and weekly activity, all in one dashboard.</p></a>
+    <a class="cv-card tilt reveal" href="ai-hints.html"><div class="glare"></div><div class="text-3xl mb-3">🤖</div><h3 class="text-lg font-bold">AI hints & review</h3><p class="txt-muted text-sm mt-2">On-demand hints at three depths and a line-by-line code review.</p></a>
+    <a class="cv-card tilt reveal" href="community.html"><div class="glare"></div><div class="text-3xl mb-3">🌍</div><h3 class="text-lg font-bold">Community problems</h3><p class="txt-muted text-sm mt-2">Browse and contribute problems from developers around the world.</p></a>
+    <a class="cv-card tilt reveal" href="editor.html"><div class="glare"></div><div class="text-3xl mb-3">💻</div><h3 class="text-lg font-bold">Online code editor</h3><p class="txt-muted text-sm mt-2">Write, run and test in your browser. Five languages, zero setup.</p></a>
+    <a class="cv-card tilt reveal" href="learn.html"><div class="glare"></div><div class="text-3xl mb-3">🧠</div><h3 class="text-lg font-bold">Topic paths</h3><p class="txt-muted text-sm mt-2">Bite-sized concept guides for arrays, trees, DP, graphs and more.</p></a>
+  </div>
+</section>
+
+<section class="relative z-10 px-6 py-20 max-w-6xl mx-auto">
+  <div class="text-center reveal">
+    <p class="mono txt-green text-sm tracking-[.3em] uppercase">Featured</p>
+    <h2 class="text-3xl md:text-6xl font-bold mt-3">Pick a problem and dive in</h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-5 mt-10">
+    <a class="cv-card reveal" href="problem.html"><span class="cv-tag green">Easy</span><h3 class="text-xl font-bold mt-3">Two Sum</h3><p class="txt-muted text-sm mt-2">Hash-map tour de force — the gateway problem.</p></a>
+    <a class="cv-card reveal" href="problem.html"><span class="cv-tag gold">Medium</span><h3 class="text-xl font-bold mt-3">Longest Substring Without Repeating</h3><p class="txt-muted text-sm mt-2">Sliding window warms up your pattern brain.</p></a>
+    <a class="cv-card reveal" href="problem.html"><span class="cv-tag violet">Hard</span><h3 class="text-xl font-bold mt-3">Merge k Sorted Lists</h3><p class="txt-muted text-sm mt-2">Heap, divide & conquer — pick your poison.</p></a>
+  </div>
+</section>
+
+<section class="relative z-10 px-6 py-16 max-w-5xl mx-auto reveal">
+  <p class="mono txt-violet text-sm tracking-[.3em] uppercase text-center">Built with</p>
+  <div class="flex flex-wrap justify-center gap-3 mt-6">
+    <span class="cv-tag">Next.js</span><span class="cv-tag">TypeScript</span><span class="cv-tag">Tailwind CSS</span>
+    <span class="cv-tag violet">shadcn/ui</span><span class="cv-tag green">Spring Boot</span><span class="cv-tag gold">Java</span>
+    <span class="cv-tag violet">Spring Data MongoDB</span><span class="cv-tag red">Spring Security</span><span class="cv-tag">MongoDB</span>
+  </div>
+</section>
+
+<footer data-mount="footer" class="reveal"></footer>
+<script src="assets/app.js"></script>
+</body></html>

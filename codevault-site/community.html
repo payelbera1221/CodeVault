@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Community · CodeVault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/styles.css"></head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<nav class="cv-nav" data-mount="nav"></nav>
+
+<main class="relative z-10 px-6 pt-32 pb-20 max-w-6xl mx-auto">
+  <p class="mono txt-violet text-sm tracking-[.3em] uppercase reveal">Community</p>
+  <h1 class="text-4xl md:text-6xl font-bold mt-3 reveal">Problems contributed by everyone</h1>
+  <p class="txt-muted mt-3 max-w-2xl reveal">CodeVault grows one user at a time. Submit a problem, vote on others, and watch the library scale.</p>
+
+  <div class="flex gap-3 mt-8 flex-wrap reveal">
+    <button class="cv-btn primary" onclick="document.getElementById('submitModal').style.display='flex'">+ Submit a problem</button>
+    <button class="cv-btn ghost">↑ Top voted</button>
+    <button class="cv-btn ghost">⟳ Recently added</button>
+    <button class="cv-btn ghost">✓ Approved</button>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-5 mt-10">
+    <article class="cv-card reveal">
+      <div class="flex justify-between items-start">
+        <span class="cv-tag green">Easy</span><span class="mono text-sm txt-muted">▲ 42</span>
+      </div>
+      <h3 class="text-lg font-bold mt-3">Rotate String Checker</h3>
+      <p class="txt-muted text-sm mt-2">Given two strings, determine if one is a rotation of the other using O(1) space.</p>
+      <div class="flex gap-2 mt-3">
+        <span class="cv-tag">Strings</span><span class="cv-tag">Hash Map</span>
+      </div>
+      <div class="border-t mt-4 pt-3 flex justify-between text-xs txt-muted">
+        <span>By <strong class="txt-cyan">@hannah_dev</strong></span><span>+ 2 days ago</span>
+      </div>
+    </article>
+    <article class="cv-card reveal">
+      <div class="flex justify-between items-start">
+        <span class="cv-tag gold">Medium</span><span class="mono text-sm txt-muted">▲ 87</span>
+      </div>
+      <h3 class="text-lg font-bold mt-3">Stack-based min in O(1)</h3>
+      <p class="txt-muted text-sm mt-2">Design a stack that supports push, pop and getMin in constant time.</p>
+      <div class="flex gap-2 mt-3">
+        <span class="cv-tag">Stacks</span><span class="cv-tag">Design</span>
+      </div>
+      <div class="border-t mt-4 pt-3 flex justify-between text-xs txt-muted">
+        <span>By <strong class="txt-cyan">@_alok</strong></span><span>+ 1 wk ago</span>
+      </div>
+    </article>
+    <article class="cv-card reveal">
+      <div class="flex justify-between items-start">
+        <span class="cv-tag red">Hard</span><span class="mono text-sm txt-muted">▲ 113</span>
+      </div>
+      <h3 class="text-lg font-bold mt-3">Word Ladder Builder</h3>
+      <p class="txt-muted text-sm mt-2">Return the shortest transformation sequence from begin to end word via BFS.</p>
+      <div class="flex gap-2 mt-3">
+        <span class="cv-tag gold">BFS</span><span class="cv-tag violet">Graphs</span>
+      </div>
+      <div class="border-t mt-4 pt-3 flex justify-between text-xs txt-muted">
+        <span>By <strong class="txt-cyan">@siddharth</strong></span><span>+ 3 wk ago</span>
+      </div>
+    </article>
+    <article class="cv-card reveal">
+      <div class="flex justify-between items-start">
+        <span class="cv-tag gold">Medium</span><span class="mono text-sm txt-muted">▲ 61</span>
+      </div>
+      <h3 class="text-lg font-bold mt-3">Subset Sum Count</h3>
+      <p class="txt-muted text-sm mt-2">Given an array and target, count the number of subsets summing to target.</p>
+      <div class="flex gap-2 mt-3">
+        <span class="cv-tag violet">DP</span><span class="cv-tag">Backtracking</span>
+      </div>
+      <div class="border-t mt-4 pt-3 flex justify-between text-xs txt-muted">
+        <span>By <strong class="txt-cyan">@payelbera1221</strong></span><span>+ 4 wk ago</span>
+      </div>
+    </article>
+  </div>
+
+  <div class="cv-card reveal mt-12 p-6" style="background:linear-gradient(135deg, rgba(34,211,238,.1), rgba(232,121,249,.05))">
+    <h2 class="text-2xl font-bold">Contributor of the month</h2>
+    <p class="txt-muted mt-2"><strong class="txt-cyan">@payelbera1221</strong> shipped the platform's first 12 problems and the practice API.</p>
+  </div>
+</main>
+
+<div id="submitModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;align-items:center;justify-content:center" onclick="if(event.target.id==='submitModal')this.style.display='none'">
+  <div class="cv-card" style="width:min(640px,92vw);padding:32px">
+    <h2 class="text-2xl font-bold">Submit a problem</h2>
+    <p class="txt-muted text-sm mt-1">Every submission is reviewed by the maintainers. Approved problems show up in the feed within 48h.</p>
+    <div class="mt-5 space-y-3">
+      <div><label class="cv-label">Title</label><input class="cv-input" placeholder="e.g. Minimum Window Substring"></div>
+      <div><label class="cv-label">Difficulty</label><select class="cv-input"><option>Easy</option><option>Medium</option><option>Hard</option></select></div>
+      <div><label class="cv-label">Topics</label><input class="cv-input" placeholder="Sliding Window, Strings"></div>
+      <div><label class="cv-label">Statement</label><textarea class="cv-input" rows="6" placeholder="Describe inputs, output and constraints…"></textarea></div>
+    </div>
+    <div class="flex gap-3 mt-6 justify-end">
+      <button class="cv-btn ghost" onclick="document.getElementById('submitModal').style.display='none'">Cancel</button>
+      <button class="cv-btn primary" onclick="document.getElementById('submitModal').style.display='none'">Submit for review</button>
+    </div>
+  </div>
+</div>
+
+<footer data-mount="footer"></footer>
+<script src="assets/app.js"></script>
+</body></html>
